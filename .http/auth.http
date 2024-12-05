@@ -1,0 +1,9 @@
+### Register User
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+    "name": "Indra",
+    "email": "indrazm12@devscale.id",
+    "password": "12345678"
+}
