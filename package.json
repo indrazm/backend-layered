@@ -8,7 +8,9 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"elysia": "latest"
+		"@prisma/client": "^6.0.1",
+		"elysia": "latest",
+		"prisma": "^6.0.1"
 	},
 	"devDependencies": {
 		"bun-types": "latest"
