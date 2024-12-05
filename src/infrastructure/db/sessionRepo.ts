@@ -1,10 +1,13 @@
-import type { PrismaClient, Session } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
 import type { ISession } from "../entity/interface";
+import { injectable, inject } from "inversify";
+import { TYPES } from "../entity/types";
 
+@injectable()
 export class SessionRepository implements ISession {
 	private prisma: PrismaClient;
 
-	constructor(prisma: PrismaClient) {
+	constructor(@inject(TYPES.prisma) prisma: PrismaClient) {
 		this.prisma = prisma;
 	}
 	async getOne(sessionId: string) {
