@@ -1,0 +1,26 @@
+### Register
+POST http://localhost:8000/api/v1/register
+Content-Type: application/json
+
+{
+    "name": "indra",
+    "email": "indra2@devscale.id",
+    "password": "12345678"
+}
+
+### Login
+POST http://localhost:8000/api/v1/login
+Content-Type: application/json
+
+{
+    "email": "indra2@devscale.id",
+    "password": "12345678"
+}
+
+### Check Session
+POST http://localhost:8000/api/v1/session
+Content-Type: application/json
+
+{
+    "sessionId": "cm4dhu4j20001rci38g0cw31a1"
+}

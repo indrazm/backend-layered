@@ -1,3 +1,8 @@
 import { Elysia } from "elysia";
+import { authRouter } from "./presentation/router/authRouter";
+import { noteRouter } from "./presentation/router/noteRouter";
 
-const app = new Elysia().get("/", () => "hello!").listen(8000);
+const app = new Elysia({ prefix: "/api" })
+	.use(authRouter)
+	.use(noteRouter)
+	.listen(8000);

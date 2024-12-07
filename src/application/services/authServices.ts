@@ -3,6 +3,8 @@ import type { SessionRepository } from "../../infrastructure/db/sessionRepo";
 import type { UserRepository } from "../../infrastructure/db/userRepo";
 import "reflect-metadata";
 import { injectable, inject } from "inversify";
+import { UserDTO } from "../dtos/userDTO";
+import { AuthorizationError } from "../../infrastructure/entity/errors";
 
 @injectable()
 export class AuthServices {
@@ -32,7 +34,7 @@ export class AuthServices {
 			avatar: "",
 		});
 
-		return newUser;
+		return new UserDTO(newUser).fromEntity();
 	}
 
 	async loginUser(email: string, password: string) {
@@ -63,7 +65,7 @@ export class AuthServices {
 		const session = await this.sessionRepo.getOne(sessionId);
 
 		if (!session) {
-			throw new Error("Session invalid");
+			throw new AuthorizationError("Session invalid");
 		}
 
 		const user = await this.userRepo.getOne(session.userId);

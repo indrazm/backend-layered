@@ -1,0 +1,30 @@
+### Get All User's Notes
+GET http://localhost:8000/api/v1/notes
+Authorization: Bearer cm4dpbgfp0000rci34pud04kl
+
+### Get All User's Note
+GET http://localhost:8000/api/v1/notes/cm4dpcyig0001rci30ut3bbk6
+Authorization: Bearer cm4dpbgfp0000rci34pud04kl
+
+### Create Note
+POST http://localhost:8000/api/v1/notes
+Content-Type: application/json
+Authorization: Bearer cm4dpbgfp0000rci34pud04kl
+
+{
+    "title": "Note Title",
+    "content": "Note Content"
+}
+
+### Edit Note
+PATCH http://localhost:8000/api/v1/notes/cm4dpcyig0001rci30ut3bbk6
+Content-Type: application/json
+Authorization: Bearer cm4dpbgfp0000rci34pud04kl
+
+{
+    "content": "Ini content baru"
+}
+
+### Delete Note
+DELETE http://localhost:8000/api/v1/notes/cm4dpcd4j0002rci36diz2cra
+Authorization: Bearer cm4dpbgfp0000rci34pud04kl

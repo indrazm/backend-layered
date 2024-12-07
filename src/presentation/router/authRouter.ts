@@ -1,7 +1,7 @@
 import Elysia, { t } from "elysia";
 import { authServices } from "../../application/instance";
 
-export const authRouter = new Elysia()
+export const authRouter = new Elysia({ prefix: "/v1" })
 	// routes
 	.post(
 		"/register",
@@ -53,6 +53,25 @@ export const authRouter = new Elysia()
 			body: t.Object({
 				email: t.String({ format: "email" }),
 				password: t.String({ minLength: 8 }),
+			}),
+		},
+	)
+	.post(
+		"/session",
+		async ({ body, set }) => {
+			const sessionId = body.sessionId;
+
+			const isValid = await authServices.checkSession(sessionId);
+			if (isValid !== "valid") {
+				set.status = 401;
+				return { status: "invalid" };
+			}
+
+			return { status: "valid" };
+		},
+		{
+			body: t.Object({
+				sessionId: t.String(),
 			}),
 		},
 	);
