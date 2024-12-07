@@ -3,7 +3,6 @@ import type { SessionRepository } from "../../infrastructure/db/sessionRepo";
 import type { UserRepository } from "../../infrastructure/db/userRepo";
 import "reflect-metadata";
 import { injectable, inject } from "inversify";
-import { UserDTO } from "../dtos/userDTO";
 
 @injectable()
 export class AuthServices {
@@ -33,7 +32,7 @@ export class AuthServices {
 			avatar: "",
 		});
 
-		return new UserDTO(newUser).get();
+		return newUser
 	}
 
 	async loginUser(email: string, password: string) {
