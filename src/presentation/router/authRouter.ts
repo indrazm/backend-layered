@@ -1,7 +1,7 @@
 import Elysia, { t } from "elysia";
 import { authServices } from "../../application/instance";
 
-export const authRouter = new Elysia({ prefix: "/api" })
+export const authRouter = new Elysia()
 	// routes
 	.post(
 		"/register",

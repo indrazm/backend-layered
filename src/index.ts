@@ -1,4 +1,3 @@
 import { Elysia } from "elysia";
-import { authRouter } from "./presentation/router/authRouter";
 
-const app = new Elysia().use(authRouter).listen(8000);
+const app = new Elysia().get("/", ()=> "hello!").listen(8000);
