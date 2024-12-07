@@ -19,3 +19,14 @@ export class AuthorizationError extends Error {
 		this.code = "AUTHORIZATION_ERROR";
 	}
 }
+
+export class NotFoundError extends Error {
+	public status: number;
+	public code: "NOTFOUND_ERROR";
+
+	constructor(message: string) {
+		super(message);
+		this.status = 404;
+		this.code = "NOTFOUND_ERROR";
+	}
+}

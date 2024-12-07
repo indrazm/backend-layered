@@ -10,9 +10,9 @@ export const noteRouter = new Elysia({ prefix: "/v1/notes" })
 			throw new AuthorizationError("Session id not provided!");
 		}
 
-		const user = await authServices.decodeSession(sessionId);
+		const { user } = await authServices.decodeSession(sessionId);
 
-		return user;
+		return { user };
 	})
 	// routes
 	.get("/", async ({ user }) => {

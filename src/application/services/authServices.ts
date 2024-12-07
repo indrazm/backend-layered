@@ -4,7 +4,10 @@ import type { UserRepository } from "../../infrastructure/db/userRepo";
 import "reflect-metadata";
 import { injectable, inject } from "inversify";
 import { UserDTO } from "../dtos/userDTO";
-import { AuthorizationError } from "../../infrastructure/entity/errors";
+import {
+	AuthorizationError,
+	NotFoundError,
+} from "../../infrastructure/entity/errors";
 
 @injectable()
 export class AuthServices {
@@ -40,12 +43,12 @@ export class AuthServices {
 	async loginUser(email: string, password: string) {
 		const user = await this.userRepo.getOne(email);
 		if (!user) {
-			throw new Error("User not found");
+			throw new NotFoundError("User not found");
 		}
 
 		const matchPassword = await Bun.password.verify(password, user.password);
 		if (!matchPassword) {
-			throw new Error("Invalid Credential");
+			throw new AuthorizationError("Invalid Credential");
 		}
 
 		const session = await this.sessionRepo.create(user.id);
@@ -55,7 +58,7 @@ export class AuthServices {
 	async checkSession(sessionId: string) {
 		const session = await this.sessionRepo.getOne(sessionId);
 		if (!session) {
-			throw new Error("Session invalid");
+			throw new AuthorizationError("Session invalid");
 		}
 
 		return "valid";
@@ -69,6 +72,11 @@ export class AuthServices {
 		}
 
 		const user = await this.userRepo.getOne(session.userId);
+
+		if (!user) {
+			throw new AuthorizationError("Session invalid");
+		}
+
 		return { user };
 	}
 }

@@ -35,7 +35,7 @@ export class UserRepository implements IUser {
 			});
 
 			if (!user) {
-				throw new DBError("Something went wrong while doing DB Operation");
+				return null;
 			}
 
 			return user;
