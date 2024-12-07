@@ -8,6 +8,8 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
+		"@elysiajs/cors": "^1.1.1",
+		"@elysiajs/swagger": "^1.1.6",
 		"@prisma/client": "^6.0.1",
 		"elysia": "latest",
 		"inversify": "^6.1.6",
