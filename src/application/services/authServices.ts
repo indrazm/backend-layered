@@ -32,7 +32,7 @@ export class AuthServices {
 			avatar: "",
 		});
 
-		return newUser
+		return newUser;
 	}
 
 	async loginUser(email: string, password: string) {
